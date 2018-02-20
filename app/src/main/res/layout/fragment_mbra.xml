@@ -1,0 +1,62 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bit.apps.kanadra.View.Fragment.Mbra">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/logo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:text="مبرة الكنادرة الخيريه"
+            android:layout_margin="5dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:layout_margin="5dp"
+            android:text="حساب الصدقات : 271010011298"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/text"
+            android:text="حساب الزكاة :‏271010012170"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:textColor="@color/text"
+            android:text="بيت التمويل - قرطبة -خدمة المتبرعين"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:text="العنوان : حولي - مقابل منطقة القادسية - بجانب مجمع بلازا - الدور الخامس"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text"
+            android:layout_margin="5dp"
+            android:text="‏للتواصل والإستفسار : 94066992 - 99979199"/>
+    </LinearLayout>
+</FrameLayout>

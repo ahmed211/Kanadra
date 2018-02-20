@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">كنادرة</string>
+    <string name="home_nav">الرئيسية</string>
+    <string name="family">العائلة</string>
+    <string name="shoot">الكندري للرماية</string>
+    <string name="search">البحث</string>
+    <string name="more">المزيد</string>
+    <string name="profile">الصفحة الشخصية</string>
+    <string name="search_hint">ماذا تبحث عن</string>
+    <string name="facebook_app_id">523518281368175</string>
+    <string name="login_pref">login_pref</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="competition_register">تسجيل البطولة</string>
+    <string name="username_error">اسم المستخدم مطلوب</string>
+    <string name="email_error">البريد الالكتروني مطلوب</string>
+    <string name="password_error">كلمة المرور مطلوبة</string>
+    <string name="email_invalid">من فضلك ادخل البريد الالكترونى بطريقة صحيحة</string>
+    <string name="news_title">من فضلك ادخل عنوان الخبر</string>
+    <string name="news_description">من فضلك ادخل محتوى الخبر</string>
+    <string name="news_image">من فضلك ارفع صورة الخبر</string>
+
+    <string name="baseUrl">http://alkanadra.online/</string>
+    <string name="mobile">df@@YU84_f09YY2015#225</string>
+
+    <string name="home_menu">الرئيسية</string>
+    <string name="generalnews_menu">أخبار عامة</string>
+    <string name="familyNews_menu">أخبار العائلة</string>
+    <string name="articles_menu">مقالات</string>
+    <string name="events_menu">المناسبات</string>
+    <string name="familyDiwan_menu">دواوين العائلة</string>
+    <string name="mbra_menu">مبرة الكنادرة</string>
+    <string name="kanadraDiwan_menu">ديوان الكنادرة</string>
+    <string name="shoot_menu">الكندري للرماية</string>
+    <string name="gallary_menu">المعرض</string>
+    <string name="aboutus_menu">من نحن</string>
+    <string name="contact_menu">تواصل معنا</string>
+    <string name="projects">المشاريع</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">1O6ROJiCfqq0QwwdxKDt9TIn3</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">TrbbHbXVV14HOhBFS99PiQZG6IEt8SpaZHehCCQsbRId87m8OI</string>
+    <string name="google_maps_key">AIzaSyBG-COyg9-GUJUsse3OqYLxmLjym37BzXs</string>
+    <string name="youtube_key">AIzaSyB42Cb-NZJ7wpj9pDEJeIg2QlLxn8fWyik</string>
+    <string name="diwan_text">ديوان الكنادرة بمنطقة الشعب ق 4 مقابل شارع القاهرة والمعاهد الخاصة يفتتح الديوان أبوابة بمختلف مراسم العزاء الخاصة لوفاة أبناء العائلة [ عزاء الرجال]</string>
+
+</resources>

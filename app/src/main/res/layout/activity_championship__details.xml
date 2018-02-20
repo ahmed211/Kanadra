@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@drawable/pattern"
+    tools:context=".View.Activity.Championship_Details">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/detail_title"
+            android:text=" نتكبسي تاسبكتسش كتىبشساك بىبنسبنس"
+            android:textColor="@color/main"
+            android:textSize="30dp"
+            android:gravity="center"
+            android:padding="7dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="50 views"
+                android:layout_weight="1"
+                android:id="@+id/detail_views"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/detail_date"
+                android:text="1/10/2018"
+                android:layout_weight="1"
+                android:gravity="right"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/splash"
+            android:scaleType="fitXY"
+            android:id="@+id/detail_image"
+            android:padding="7dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/detail_content"
+            android:padding="7dp"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:text="ىﻻكنسيتاﻻلب مسنيبىسمي نتبمنيت مكى كستىيشبسنكتبي"/>
+
+
+
+
+
+    </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/subscrib"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text="اشترك في البطولة"
+        android:textColor="@color/wit"
+        android:backgroundTint="@color/main"
+        android:textSize="20dp"
+        android:layout_gravity="bottom"
+        android:onClick="championSubscrib"
+        />
+
+</LinearLayout>

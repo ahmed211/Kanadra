@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e2e1cf</color>
+    <color name="colorPrimaryDark">#a5895d</color>
+    <color name="colorAccent">#9C8860</color>
+    <color name="main">#9C8860</color>
+    <color name="border">#e1bb13</color>
+    <color name="bar">#85dede</color>
+    <color name="bar_border">#FFF</color>
+    <color name="wit">#FFF</color>
+    <color name="bar_dark">#72baba</color>
+    <color name="text">#543216</color>
+    <color name="offwit">#e2e1cf</color>
+ </resources>

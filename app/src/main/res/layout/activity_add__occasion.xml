@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pattern"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+
+    tools:context=".View.Activity.Add_Occasion">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/main">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/wit"
+            android:text="اضافة مناسبة"
+            android:textSize="30dp"
+            android:gravity="center_horizontal|center_vertical"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/camera_container">
+
+            <!--<ImageView-->
+                <!--android:layout_width="50dp"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:id="@+id/upload_image"-->
+                <!--android:layout_margin="15dp"-->
+                <!--android:layout_gravity="left"-->
+                <!--android:src="@drawable/upload_photo"-->
+                <!--android:onClick="upload_photo"-->
+                <!--/>-->
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="right"
+                android:id="@+id/upload_image"
+                android:src="@drawable/upload_photo"
+                android:layout_alignParentLeft="true"
+                android:onClick="upload_photo"
+                tools:ignore="OnClick" />
+
+
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/occasion_image"
+                android:layout_centerInParent="true"
+                />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="right"
+                android:id="@+id/publish_occasion"
+                android:src="@drawable/send"
+                android:layout_alignParentRight="true"
+                android:onClick="publish_occasion"
+                tools:ignore="OnClick" />
+
+
+        </RelativeLayout>
+
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:hint="عنوان المناسبة....."
+            android:paddingRight="10dp"
+            android:background="@drawable/search_shap"
+            android:singleLine="true"
+            android:gravity="right|center_vertical"
+            android:textColor="@color/main"
+            android:layout_marginTop="10dp"
+            android:cursorVisible="true"
+            android:id="@+id/occasion_name"/>
+
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:hint="تاريخ المناسبة....."
+            android:paddingRight="10dp"
+            android:background="@drawable/search_shap"
+            android:singleLine="true"
+            android:gravity="right|center_vertical"
+            android:textColor="@color/main"
+            android:layout_marginTop="30dp"
+            android:cursorVisible="true"
+            android:id="@+id/occasion_date"/>
+
+
+        <EditText
+            android:id="@+id/occasion_content"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/search_shap"
+            android:hint="نبذة عن المناسبة....."
+            android:paddingRight="10dp"
+            android:gravity="right"
+            android:singleLine="false" />
+
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

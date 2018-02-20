@@ -1,0 +1,91 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Fragment.SignUp">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/pattern"
+            android:paddingTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <ImageView android:src="@drawable/logo_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/signup_text"/>
+
+            <!--  Email Label -->
+
+            <EditText android:id="@+id/user_name_signup"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="text"
+                android:gravity="right|center_vertical"
+                android:hint="اسم المستخدم"
+                android:background="@drawable/search_shap"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+
+                />
+
+
+            <EditText android:id="@+id/input_email_signup"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textEmailAddress"
+                android:gravity="right|center_vertical"
+                android:hint="البريد الالكتروني"
+                android:background="@drawable/search_shap"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="20dp"
+
+                />
+
+            <!--  Password Label -->
+            <EditText android:id="@+id/input_password_signup"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:inputType="textPassword"
+                android:background="@drawable/search_shap"
+                android:hint="كلمة المرور"
+                android:gravity="right|center_vertical"
+                android:paddingRight="10dp"
+                android:layout_marginBottom="10dp"
+
+                />
+
+
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_login_signup"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:padding="12dp"
+                android:text="Login"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp">
+
+    <EditText
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="ادخل رقم الموبيل"
+        android:id="@+id/mobile"
+        android:layout_gravity="center"
+        android:inputType="number"
+        android:gravity="center"/>
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:text="اشترك"
+        android:textSize="20dp"
+        android:textColor="@color/wit"
+        android:backgroundTint="@color/main"
+        android:id="@+id/champ_subscrip"
+        android:gravity="center"
+        android:layout_gravity="center"
+
+        />
+
+</LinearLayout>

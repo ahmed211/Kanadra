@@ -1,0 +1,47 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pattern"
+    tools:context=".View.Fragment.AboutUs">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:padding="5dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo"/>
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/more_text"
+            android:text="من نحن ؟"
+            android:fontFamily="-"
+            android:textColor="@color/main"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:gravity="center_vertical|center_horizontal"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/text_about"
+            android:layout_margin="20dp"
+            android:background="@drawable/search_shap"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+
+</FrameLayout>

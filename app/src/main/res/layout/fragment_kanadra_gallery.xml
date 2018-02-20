@@ -1,0 +1,48 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pattern"
+    tools:context=".View.Fragment.KanadraGallery">
+
+    <!-- TODO: Update blank fragment layout -->
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerview_family"
+        android:scrollbars="vertical"
+        android:layout_gravity="right"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="الفيديوهات"
+            android:id="@+id/videos"
+            android:textColor="@color/text"
+            android:background="@color/offwit"
+            android:textStyle="bold"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="الصور"
+            android:textStyle="bold"
+            android:id="@+id/images"
+            android:textColor="@color/text"
+            android:background="@color/offwit"
+
+            />
+
+    </LinearLayout>
+
+</FrameLayout>
