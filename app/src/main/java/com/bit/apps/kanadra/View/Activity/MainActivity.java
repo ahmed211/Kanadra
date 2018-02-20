@@ -1,5 +1,6 @@
 package com.bit.apps.kanadra.View.Activity;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -30,6 +31,8 @@ import com.bit.apps.kanadra.View.Fragment.KanadraGallery;
 import com.bit.apps.kanadra.View.Fragment.Mbra;
 import com.bit.apps.kanadra.View.Fragment.NewsArticles;
 import com.bit.apps.kanadra.View.Fragment.VideoGallery;
+import com.bit.apps.kanadra.util.FirebaseConfig;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import android.app.ActionBar;
 //import android.widget.RelativeLayout.LayoutParams;
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private Class fragmentClass = null;
     private Bundle bundle;
 
-
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -65,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initialization();
-
+        displayFirebaseRegId();
+        FirebaseMessaging.getInstance().subscribeToTopic(FirebaseConfig.TOPIC_NEWS);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
@@ -137,6 +141,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void displayFirebaseRegId() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(FirebaseConfig.SHARED_PREF, 0);
+        String regId = pref.getString("regId", null);
+        Log.e(TAG, "Firebase reg id: " + regId);
+    }
 
     public void selectedItemDrawer(MenuItem item){
 
