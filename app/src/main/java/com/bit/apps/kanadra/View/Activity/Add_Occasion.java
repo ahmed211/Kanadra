@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import com.bit.apps.kanadra.Interface.ClientAPI;
 import com.bit.apps.kanadra.R;
+import com.bit.apps.kanadra.model.SignUp_Model;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -39,8 +42,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Add_Occasion extends AppCompatActivity {
 
     private TextView occasion_date, occasion_name, occasion_content;
-    private ImageView occasion_photo,camera, camera_dialog, gallery_dialog, publish;
+    private ImageView occasion_photo,camera, camera_dialog, gallery_dialog;
     private Dialog dialog;
+    private Button publish;
 
     private Bitmap photo = null;
     private Uri selectedImage = null;
@@ -77,7 +81,7 @@ public class Add_Occasion extends AppCompatActivity {
 
         camera = (ImageView) findViewById(R.id.upload_image);
         occasion_photo = (ImageView) findViewById(R.id.occasion_image);
-        publish = (ImageView) findViewById(R.id.publish_occasion);
+        publish = (Button) findViewById(R.id.publish_occasion);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("انتظر من فضلك");
         preferences = getSharedPreferences(getString(R.string.login_pref), MODE_PRIVATE);
@@ -193,20 +197,25 @@ public class Add_Occasion extends AppCompatActivity {
         Retrofit retrofit = builder.build();
 
         ClientAPI api = retrofit.create(ClientAPI.class);
-        Call<ResponseBody> call = api.uploadOccasion(mobile, userId, user_auth,
+        Call<SignUp_Model> call = api.uploadOccasion(mobile, userId, user_auth,
                 title, date, content, imag);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<SignUp_Model>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.v("q1q", response.body().toString());
-                progressDialog.dismiss();
-                 Toast.makeText(Add_Occasion.this, "تم التحميل بنجاح", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<SignUp_Model> call, Response<SignUp_Model> response) {
+                if(response.body().getCode().equals("200")) {
+                    progressDialog.dismiss();
+                    Toast.makeText(Add_Occasion.this, "تم التحميل بنجاح", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Add_Occasion.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(Add_Occasion.this, "حاول مرة اخرى", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<SignUp_Model> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(Add_Occasion.this, "حاول مرة اخرى", Toast.LENGTH_SHORT).show();
 
@@ -227,6 +236,14 @@ public class Add_Occasion extends AppCompatActivity {
         }
     }
 
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+
 
     protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -237,10 +254,12 @@ public class Add_Occasion extends AppCompatActivity {
             case 0:
                 if(resultCode == RESULT_OK){
 
-                    selectedImage = data.getData();
+//                    selectedImage = data.getData();
                     photo = (Bitmap) data.getExtras().get("data");
-                    thumb = Bitmap.createScaledBitmap(photo, 250, 250, false);
-                    occasion_photo.setImageBitmap(thumb);
+                    selectedImage = getImageUri(Add_Occasion.this, photo);
+
+//                    thumb = Bitmap.createScaledBitmap(photo, 250, 250, false);
+                    occasion_photo.setImageBitmap(photo);
 
                 }
 
@@ -253,12 +272,13 @@ public class Add_Occasion extends AppCompatActivity {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    thumb = Bitmap.createScaledBitmap(photo, 250, 250, false);
-                    occasion_photo.setImageBitmap(thumb);
+                    //thumb = Bitmap.createScaledBitmap(photo, 250, 250, false);
+                    occasion_photo.setImageBitmap(photo);
                 }
                 break;
         }
 
+        occasion_photo.setVisibility(View.VISIBLE);
         String filePath = getRealPathFromURIPath(selectedImage, Add_Occasion.this);
         Bitmap bm = BitmapFactory.decodeFile(filePath);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

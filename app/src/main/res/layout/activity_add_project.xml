@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pattern"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layoutDirection="ltr"
+    tools:context=".View.Activity.AddProject">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/offwit"
+        android:layout_marginBottom="10dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text"
+                android:text="اضافة مشروع"
+                android:textSize="30dp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                />
+
+
+
+        </RelativeLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingBottom="15dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/project_name"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/search_shap"
+                android:cursorVisible="true"
+                android:gravity="right|center_vertical"
+                android:hint="اسم المشروع"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
+
+
+            <EditText
+                android:id="@+id/project_content"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/search_shap"
+                android:gravity="right"
+                android:hint="نبذة عن المشروع....."
+                android:paddingRight="10dp"
+                android:textColor="@color/text"
+                android:singleLine="false" />
+
+            <EditText
+                android:id="@+id/project_phone"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/search_shap"
+                android:cursorVisible="true"
+                android:gravity="right|center_vertical"
+                android:hint="رقم الهاتف المحمول"
+                android:inputType="phone"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
+
+            <EditText
+                android:id="@+id/project_website"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/search_shap"
+                android:cursorVisible="true"
+                android:gravity="right|center_vertical"
+                android:hint="الموقع الالكتروني"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
+
+
+            <EditText
+                android:id="@+id/project_facebook"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/search_shap"
+                android:cursorVisible="true"
+                android:gravity="right|center_vertical"
+                android:hint="فيسبوك"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
+
+
+            <EditText
+                android:id="@+id/project_twitter"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/search_shap"
+                android:cursorVisible="true"
+                android:gravity="right|center_vertical"
+                android:hint="تويتر"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
+
+
+            <EditText
+                android:id="@+id/project_instagram"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/search_shap"
+                android:cursorVisible="true"
+                android:gravity="right|center_vertical"
+                android:hint="انستجرام"
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:id="@+id/map"
+                android:layout_margin="10dp"
+                tools:context=".MapsActivity"
+                android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+
+            <ImageView
+                android:id="@+id/upload_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:onClick="upload_photo"
+                android:src="@drawable/upload_photo"
+                tools:ignore="OnClick" />
+
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/camera_container"
+                    android:visibility="gone"></LinearLayout>
+
+
+            </HorizontalScrollView>
+
+
+
+            <Button
+                android:id="@+id/publish_project"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:onClick="publish_project"
+                android:background="@drawable/add"
+                tools:ignore="OnClick" />
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

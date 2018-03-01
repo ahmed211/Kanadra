@@ -8,6 +8,9 @@ import com.bit.apps.kanadra.model.News_Model.PojoNews;
 import com.bit.apps.kanadra.model.SignUp_Model;
 import com.bit.apps.kanadra.model.UploadObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -46,7 +49,7 @@ public interface ClientAPI {
 
     @FormUrlEncoded
     @POST("index.php?r=api/do/news")
-    Call<ResponseBody> uploadnews(
+    Call<SignUp_Model> uploadnews(
             @Field("mobile") String mobile,
             @Field("u_id") String u_id,
             @Field("u_auth") String u_auth,
@@ -61,7 +64,7 @@ public interface ClientAPI {
 
     @FormUrlEncoded
     @POST("index.php?r=api/do/event")
-    Call<ResponseBody> uploadOccasion(
+    Call<SignUp_Model> uploadOccasion(
             @Field("mobile") String mobile,
             @Field("u_id") String u_id,
             @Field("u_auth") String u_auth,
@@ -74,15 +77,32 @@ public interface ClientAPI {
 
     @FormUrlEncoded
     @POST("index.php?r=api/do/diwan")
-    Call<ResponseBody> uploadDiwan(
+    Call<SignUp_Model> uploadDiwan(
             @Field("mobile") String mobile,
             @Field("u_id") String u_id,
             @Field("u_auth") String u_auth,
             @Field("title") String title,
             @Field("days") String days,
             @Field("content") String content,
-            @Field("file") String file
-    );
+            @Field("file") String file,
+            @Field("lat") String lat,
+            @Field("lon") String lon
+            );
+
+    @FormUrlEncoded
+    @POST("index.php?r=api/do/project")
+    Call<ResponseBody> uploadProject(
+            @Field("mobile") String mobile,
+            @Field("u_id") String u_id,
+            @Field("u_auth") String u_auth,
+            @Field("title") String title,
+            @Field("content") String content,
+            @Field("phone") String phone,
+            @Field("website") String website,
+            @Field("facebook") String facebook,
+            @Field("twitter") String twitter,
+            @Field("instagram") String instagram,
+            @Field("images") String[] images );
 
 
     @GET("index.php?r=api/get/categories")
@@ -91,7 +111,7 @@ public interface ClientAPI {
 
     @FormUrlEncoded
     @POST("index.php?r=api/do/subscribe")
-    Call<ResponseBody> subscrib(
+    Call<SignUp_Model> subscrib(
             @Field("mobile") String mobile,
             @Field("u_id") String u_id,
             @Field("u_auth") String u_auth,

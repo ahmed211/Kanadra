@@ -1,6 +1,9 @@
 package com.bit.apps.kanadra.View.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -17,18 +20,24 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bit.apps.kanadra.R;
 import android.widget.RelativeLayout.LayoutParams;
+
+import com.bit.apps.kanadra.View.Fragment.ADD;
 import com.bit.apps.kanadra.View.Fragment.AboutUs;
 import com.bit.apps.kanadra.View.Fragment.Home;
 import com.bit.apps.kanadra.View.Fragment.KanadraDiwan;
 import com.bit.apps.kanadra.View.Fragment.KanadraGallery;
 import com.bit.apps.kanadra.View.Fragment.Mbra;
 import com.bit.apps.kanadra.View.Fragment.NewsArticles;
+import com.bit.apps.kanadra.View.Fragment.Shoot;
 import com.bit.apps.kanadra.View.Fragment.VideoGallery;
 
 import android.app.ActionBar;
@@ -42,16 +51,18 @@ public class MainActivity extends AppCompatActivity {
 //    Fragment selectedFragment = null;
     private TextView header;
 //    private String header_title[] = {"الرئيسية", "العائلة", "من نحن","اضف"};
-//    private LinearLayout search_layout;
+    private LinearLayout search_layout;
     private FragmentManager fragmentManager;
     private Fragment fragment = null;
     private Class fragmentClass = null;
-    private Bundle bundle;
+    private Bundle bundle, loginBundle;
+    private EditText searchView;
 
 
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
+
     ActionBar actionbar;
     TextView textview;
     DrawerLayout.LayoutParams layoutparams;
@@ -66,20 +77,16 @@ public class MainActivity extends AppCompatActivity {
 
         initialization();
 
+        LinearLayout layout = (LinearLayout) findViewById(R.id.main);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            layout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        }
+
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
 
-        fragmentClass = Home.class;
-        try {
-            fragment = (Fragment) fragmentClass.newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        fragmentManager.beginTransaction().replace(R.id.content_fragment, fragment).commit();
+        starterFragment();
 
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -102,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                searchView.clearFocus();
+                InputMethodManager in = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                in.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
+
                 if(drawerLayout.isDrawerOpen(Gravity.LEFT))
                     drawerLayout.closeDrawers();
                 else
@@ -109,21 +120,60 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 //
-//        search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if ( search_layout.getVisibility() == View.GONE) {
-//                    search_layout.setVisibility(View.VISIBLE);
-//                }
-//
-//                else if (search_layout.getVisibility() == View.VISIBLE){
-//
-//                    search_layout.setVisibility(View.GONE);
-//                }
-//            }
-//        });
 
 
+        searchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
+
+    }
+
+    private void performSearch() {
+
+        fragmentClass = NewsArticles.class;
+        bundle.putString("code", "8");
+        bundle.putString("searchText", searchView.getText().toString());
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        fragment.setArguments(bundle);
+        fragmentManager.beginTransaction().replace(R.id.content_fragment, fragment).commit();
+
+
+        searchView.clearFocus();
+        InputMethodManager in = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
+    }
+
+    private void starterFragment() {
+
+        String logincode = loginBundle.getString("add");
+        if(logincode == null)
+            fragmentClass = Home.class;
+        else if (logincode.equals("1"))
+            fragmentClass = ADD.class;
+        else
+            fragmentClass = Home.class;
+        try {
+            fragment = (Fragment) fragmentClass.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        fragmentManager.beginTransaction().replace(R.id.content_fragment, fragment).commit();
 
     }
 
@@ -132,7 +182,10 @@ public class MainActivity extends AppCompatActivity {
         toggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
         fragmentManager = getSupportFragmentManager();
         bundle = new Bundle();
-
+        loginBundle = getIntent().getExtras();
+        search = (ImageView) findViewById(R.id.search_bar);
+        search_layout = (LinearLayout) findViewById(R.id.search_layout);
+        searchView = (EditText) findViewById(R.id.search_text);
 
 
     }
@@ -228,5 +281,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void filter(View view) {
+        if(search_layout.getVisibility() == View.VISIBLE) {
+            search_layout.setVisibility(View.GONE);
+            searchView.clearFocus();
+            InputMethodManager in = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            in.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
+
+        }
+        else
+            search_layout.setVisibility(View.VISIBLE);
     }
 }

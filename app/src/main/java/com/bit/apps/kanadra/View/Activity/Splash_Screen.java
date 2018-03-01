@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -41,7 +42,8 @@ public class Splash_Screen extends AppCompatActivity {
         // The request code used in ActivityCompat.requestPermissions()
 // and returned in the Activity's onRequestPermissionsResult()
         int PERMISSION_ALL = 1;
-        String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CALL_PHONE };
 
         if(!hasPermissions(this, PERMISSIONS)){
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL);
@@ -68,10 +70,8 @@ public class Splash_Screen extends AppCompatActivity {
             public void run() {
                 try {
                     sleep(2000);
-                    if(id == null)
-                        intent =new Intent(Splash_Screen.this, Login_Signup.class);
-                    else
-                        intent = new Intent(Splash_Screen.this, MainActivity.class);
+                    intent = new Intent(Splash_Screen.this, MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {

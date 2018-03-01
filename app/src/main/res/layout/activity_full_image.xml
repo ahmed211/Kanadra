@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layoutDirection="ltr"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.bit.apps.kanadra.View.Activity.FullImage">
@@ -11,6 +12,6 @@
         android:layout_height="match_parent"
         android:id="@+id/full_image"
         android:src="@drawable/logo"
-        android:scaleType="fitXY"/>
+        />
 
 </android.support.constraint.ConstraintLayout>

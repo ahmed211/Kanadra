@@ -6,6 +6,7 @@
     card_view:cardElevation="20dp"
     card_view:cardCornerRadius="10dp"
     android:layout_marginTop="2.5dp"
+    android:layoutDirection="ltr"
     android:layout_marginBottom="2.5dp"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
@@ -62,7 +63,7 @@
             android:layout_height="80dp"
             android:layout_alignParentRight="true"
             android:scaleType="fitXY"
-            android:src="@drawable/splash" />
+            android:src="@drawable/home" />
 
     </RelativeLayout>
 

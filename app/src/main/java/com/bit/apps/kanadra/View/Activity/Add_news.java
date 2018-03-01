@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -68,7 +69,8 @@ public class Add_news extends AppCompatActivity {
     ImageView camera, news_image;
     Dialog dialog;
     EditText news_name, news_description;
-    ImageView camera_dialog, gallery_dialog, publish;
+    ImageView camera_dialog, gallery_dialog;
+    private Button publish;
     private final int CAMERA_RESULT = 1;
     private Bitmap photo = null;
     private Uri selectedImage = null;
@@ -99,7 +101,7 @@ public class Add_news extends AppCompatActivity {
         news_image = (ImageView) findViewById(R.id.news_image);
         news_name = (EditText) findViewById(R.id.news_name);
         news_description = (EditText) findViewById(R.id.news_description);
-        publish = (ImageView) findViewById(R.id.publish_news);
+        publish = (Button) findViewById(R.id.publish_news);
         progressDialog = new ProgressDialog(this);
         cats = (Spinner) findViewById(R.id.news_categories);
         progressDialog.setMessage("انتظر من فضلك");
@@ -248,20 +250,25 @@ public class Add_news extends AppCompatActivity {
         Retrofit retrofit = builder.build();
 
         ClientAPI api = retrofit.create(ClientAPI.class);
-        Call<ResponseBody> call = api.uploadnews(mobile, userId, user_auth,
+        Call<SignUp_Model> call = api.uploadnews(mobile, userId, user_auth,
                 title, category_id, content, imag);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<SignUp_Model>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.v("q1q", response.body().toString());
+            public void onResponse(Call<SignUp_Model> call, Response<SignUp_Model> response) {
                 progressDialog.dismiss();
-                Toast.makeText(Add_news.this, "تم التحميل بنجاح", Toast.LENGTH_SHORT).show();
+                if(response.body().getCode().equals("200")) {
+                    Toast.makeText(Add_news.this, "تم التحميل بنجاح", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Add_news.this, MainActivity.class);
+                    startActivity(intent);
+                }
+                else
+                    Toast.makeText(Add_news.this, "حاول مرة اخرى", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<SignUp_Model> call, Throwable t) {
                 progressDialog.dismiss();
                 Toast.makeText(Add_news.this, "حاول مرة اخرى", Toast.LENGTH_SHORT).show();
 
@@ -307,6 +314,13 @@ public class Add_news extends AppCompatActivity {
         }
     }
 
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
 
     protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -315,8 +329,9 @@ public class Add_news extends AppCompatActivity {
             case 0:
                 if(resultCode == RESULT_OK){
 
-                    selectedImage = data.getData();
+                    //selectedImage = data.getData();
                     photo = (Bitmap) data.getExtras().get("data");
+                    selectedImage = getImageUri(Add_news.this, photo);
                     news_image.setImageBitmap(photo);
 
                 }
@@ -335,6 +350,7 @@ public class Add_news extends AppCompatActivity {
                 break;
         }
 
+        news_image.setVisibility(View.VISIBLE);
         String filePath = getRealPathFromURIPath(selectedImage, Add_news.this);
         Bitmap bm = BitmapFactory.decodeFile(filePath);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

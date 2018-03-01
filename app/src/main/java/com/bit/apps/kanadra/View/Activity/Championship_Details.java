@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bit.apps.kanadra.Interface.ClientAPI;
 import com.bit.apps.kanadra.R;
+import com.bit.apps.kanadra.model.SignUp_Model;
 import com.bumptech.glide.Glide;
 
 import okhttp3.ResponseBody;
@@ -86,25 +87,39 @@ public class Championship_Details extends AppCompatActivity {
 
 
     public void championSubscrib(View view) {
-        dialog.setContentView(R.layout.custom_champion_subscrib);
-        dialog.setTitle("");
-        mobile_num = dialog.findViewById(R.id.mobile);
-        subscrib = dialog.findViewById(R.id.champ_subscrip);
 
-        subscrib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        final String user_id, user_auth;
+        user_id = preferences.getString("id", null);
+        user_auth = preferences.getString("auth_key", null);
 
-                String user_id, user_auth;
-                user_id = preferences.getString("id", null);
-                user_auth = preferences.getString("auth_key", null);
+        if(user_id == null){
+            Intent intent = new Intent(Championship_Details.this, Login_Signup.class);
+            intent.putExtra("champ_add", "0");
+            startActivity(intent);
+        }
 
-                callapi(id ,mobile_num.getText().toString(), getString(R.string.mobile),
-                        user_id, user_auth);
-            }
-        });
+        else {
+            dialog.setContentView(R.layout.custom_champion_subscrib);
+            dialog.setTitle("");
+            mobile_num = dialog.findViewById(R.id.mobile);
+            subscrib = dialog.findViewById(R.id.champ_subscrip);
+            subscrib.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-        dialog.show();
+
+                    if(mobile_num.getText().toString().equals(""))
+                        Toast.makeText(Championship_Details.this, "ادخل رقم الموبيل من فضلك", Toast.LENGTH_SHORT).show();
+                    else
+                        callapi(id ,mobile_num.getText().toString(), getString(R.string.mobile),
+                                user_id, user_auth);
+                }
+            });
+
+            dialog.show();
+
+        }
+
 
     }
 
@@ -118,21 +133,22 @@ public class Championship_Details extends AppCompatActivity {
         Retrofit retrofit = builder.build();
 
         ClientAPI api = retrofit.create(ClientAPI.class);
-        Call<ResponseBody> call = api.subscrib(mobile, userId, user_auth,
+        Call<SignUp_Model> call = api.subscrib(mobile, userId, user_auth,
                 champ_id, phone_num);
 
-        call.enqueue(new Callback<ResponseBody>() {
+        call.enqueue(new Callback<SignUp_Model>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                Log.v("q1q", response.body().toString());
-                Toast.makeText(Championship_Details.this, "تم الاشتراك بنجاح", Toast.LENGTH_SHORT).show();
+            public void onResponse(Call<SignUp_Model> call, Response<SignUp_Model> response) {
+                if(response.body().getCode().equals("200"))
+                    Toast.makeText(Championship_Details.this, "تم الاشتراك بنجاح", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(Championship_Details.this, "فشل ... حاول مرة اخرى", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                    Toast.makeText(MainActivity.this, "fail", Toast.LENGTH_SHORT).show();
-                Log.v("فشل ... حاول مرة اخرى", t.toString());
+            public void onFailure(Call<SignUp_Model> call, Throwable t) {
+                Toast.makeText(Championship_Details.this, "فشل ... حاول مرة اخرى", Toast.LENGTH_SHORT).show();
 
             }
         });

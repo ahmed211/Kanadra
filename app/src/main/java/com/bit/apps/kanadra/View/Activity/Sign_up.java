@@ -28,8 +28,11 @@ public class Sign_up extends AppCompatActivity {
 
     EditText email_text, username_text, password_text;
     Button signup_btn;
-    String email, username, password;
+    String email, username, password, champ_add;
+    private Bundle bundle;
     private SharedPreferences.Editor editor;
+    Intent intent;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,8 @@ public class Sign_up extends AppCompatActivity {
         signup_btn = (Button) findViewById(R.id.btn_signup);
         editor = getSharedPreferences(getString(R.string.login_pref), MODE_PRIVATE).edit();
 
-
+        bundle = getIntent().getExtras();
+        champ_add = bundle.getString("champ_add");
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,15 +86,22 @@ public class Sign_up extends AppCompatActivity {
                         String id = data.get(0).getId();
                         String auth_key = data.get(0).getAuth_key();
 
-                        Intent intent = new Intent(Sign_up.this, MainActivity.class);
-                        intent.putExtra("id", data.get(0).getId());
-                        intent.putExtra("auth_key", data.get(0).getAuth_key());
                         editor.putString("id", id);
                         editor.putString("auth_key", auth_key);
                         editor.apply();
+                        intent = new Intent(Sign_up.this, MainActivity.class);
+                        if(champ_add.equals("0"))
+                            intent.putExtra("add", "0");
+                        else
+                            intent.putExtra("add", "1");
+
                         Toast.makeText(Sign_up.this, "تم التسجيل بنجاح", Toast.LENGTH_SHORT).show();
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
+
+
+
+
 
 
                     }

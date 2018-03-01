@@ -93,7 +93,7 @@ public class Events_Adapter extends RecyclerView.Adapter<Events_Adapter.ViewHold
 
         holder.title.setText(events_Data.get(position).getTitle());
         holder.content.setText(Html.fromHtml(content));
-        Glide.with(context).load(image).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
+        Glide.with(context).load(image).override(50, 50).into(holder.image);
 
     }
 
@@ -109,7 +109,7 @@ public class Events_Adapter extends RecyclerView.Adapter<Events_Adapter.ViewHold
 
         holder.title.setText(title);
         holder.content.setText(Html.fromHtml(content));
-        Glide.with(context).load(image).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.image);
+        Glide.with(context).load(image).override(50, 50).into(holder.image);
 
     }
 

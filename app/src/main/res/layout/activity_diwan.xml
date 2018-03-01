@@ -5,24 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pattern"
+    android:layoutDirection="ltr"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-
+    android:focusableInTouchMode="true"
     tools:context=".View.Activity.Diwan">
 
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/main">
+        android:layout_height="50dp"
+        android:background="@color/offwit"
+        android:layout_marginBottom="10dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp">
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/wit"
-            android:text="اضافة ديوان"
-            android:textSize="30dp"
-            android:gravity="center_horizontal|center_vertical"/>
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text"
+                android:text="اضافة ديوان"
+                android:textSize="30dp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                />
+
+
+        </RelativeLayout>
+
 
     </android.support.v7.widget.Toolbar>
 
@@ -38,57 +54,22 @@
 
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/camera_container">
-
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/upload_image"
-                    android:layout_margin="15dp"
-                    android:layout_gravity="left"
-                    android:src="@drawable/upload_photo"
-                    android:onClick="upload_photo"
-                    tools:ignore="OnClick" />
-
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:id="@+id/diwan_image"
-                    android:layout_centerInParent="true"
-                    />
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="15dp"
-                    android:layout_gravity="right"
-                    android:id="@+id/publish_diwan"
-                    android:src="@drawable/send"
-                    android:layout_alignParentRight="true"
-                    android:onClick="publish_diwan"
-                    tools:ignore="OnClick" />
-
-
-            </RelativeLayout>
 
             <EditText
 
+                android:id="@+id/diwan_name"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:hint="عنوان المناسبة....."
-                android:paddingRight="10dp"
-                android:background="@drawable/search_shap"
-                android:singleLine="true"
-                android:gravity="right|center_vertical"
-                android:textColor="@color/main"
+                android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/search_shap"
                 android:cursorVisible="true"
-                android:id="@+id/diwan_name"/>
+                android:gravity="right|center_vertical"
+                android:hint="عنوان الديوان....."
+                android:paddingRight="10dp"
+                android:singleLine="true"
+                android:textColor="@color/text" />
 
 
             <EditText
@@ -99,10 +80,11 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/search_shap"
+                android:gravity="right"
                 android:hint="نبذة عن الديوان....."
                 android:paddingRight="10dp"
-                android:gravity="right"
-                android:singleLine="false" />
+                android:singleLine="false"
+                android:textColor="@color/text" />
 
 
             <LinearLayout
@@ -126,13 +108,13 @@
                     android:layout_weight="1"
 
                     android:orientation="vertical">
+
                     <CheckBox
                         android:id="@+id/monday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="الاثنين"
                         android:layout_weight="1"
-                        />
+                        android:text="الاثنين" />
 
 
                     <CheckBox
@@ -148,16 +130,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    >
+                    android:orientation="vertical">
+
                     <CheckBox
                         android:id="@+id/sunday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="الأحد"
                         android:layout_weight="1"
-                        />
+                        android:text="الأحد" />
 
                     <CheckBox
                         android:id="@+id/thursday"
@@ -172,17 +153,15 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    >
+                    android:orientation="vertical">
 
                     <CheckBox
                         android:id="@+id/saturday"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="السبت"
                         android:layout_weight="1"
-                        />
+                        android:text="السبت" />
 
                     <CheckBox
                         android:id="@+id/wednesday"
@@ -193,11 +172,47 @@
 
 
                 </LinearLayout>
-
-
             </LinearLayout>
 
 
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:id="@+id/map"
+                android:layout_margin="10dp"
+                tools:context=".MapsActivity"
+                android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+
+
+
+            <ImageView
+                android:id="@+id/upload_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:onClick="upload_photo"
+                android:src="@drawable/upload_photo"
+                tools:ignore="OnClick" />
+
+            <ImageView
+                android:id="@+id/diwan_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/publish_diwan"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_margin="15dp"
+                android:background="@drawable/add"
+                android:onClick="publish_diwan"
+                tools:ignore="OnClick" />
 
 
         </LinearLayout>

@@ -55,7 +55,7 @@ public class Projects_Adapter extends RecyclerView.Adapter<Projects_Adapter.View
 
         holder.title.setText(projectsData.get(position).getTitle());
        // holder.date.setText(projectsData.get(position).getDate());
-        Glide.with(context).load(image).into(holder.image);
+        Glide.with(context).load(image).override(150,150).into(holder.image);
 
         holder.call.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.bit.apps.kanadra.R;
+import com.bit.apps.kanadra.View.Activity.AddProject;
 import com.bit.apps.kanadra.View.Activity.Add_Occasion;
 import com.bit.apps.kanadra.View.Activity.Add_news;
 import com.bit.apps.kanadra.View.Activity.Diwan;
@@ -22,7 +23,7 @@ import com.bit.apps.kanadra.model.Home_Model.News;
 public class ADD extends Fragment {
 
     View inflate_view;
-    Button news, occasion, diwan;
+    Button news, occasion, diwan, project;
     private Intent intent;
 
 
@@ -50,6 +51,7 @@ public class ADD extends Fragment {
         news = (Button) inflate_view.findViewById(R.id.news);
         occasion = (Button) inflate_view.findViewById(R.id.occasion);
         diwan = (Button) inflate_view.findViewById(R.id.diwan);
+        project = (Button) inflate_view.findViewById(R.id.project);
     }
 
     private void click() {
@@ -76,6 +78,14 @@ public class ADD extends Fragment {
                 intent = new Intent(getActivity(), Diwan.class);
                 startActivity(intent);
 
+            }
+        });
+
+        project.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(getActivity(), AddProject.class);
+                startActivity(intent);
             }
         });
     }

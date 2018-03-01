@@ -6,6 +6,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     card_view:cardElevation="20dp"
     card_view:cardCornerRadius="10dp"
+    android:layoutDirection="ltr"
     android:layout_margin="5dp"
     android:padding="5dp"
     >
@@ -55,7 +56,7 @@
                 android:scaleType="fitXY"
                 android:id="@+id/card_image"
 
-                android:src="@drawable/splash" />
+                android:src="@drawable/home" />
 
 
 

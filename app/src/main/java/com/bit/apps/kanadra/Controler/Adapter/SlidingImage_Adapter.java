@@ -55,7 +55,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
         TextView title = (TextView) imageLayout.findViewById(R.id.slider_title);
 
         Glide.with(context).load(imageModelArrayList.get(position).getImage_drawable())
-                .diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+                .override(250, 250).into(imageView);
 
         title.setText(imageModelArrayList.get(position).getTitle());
 

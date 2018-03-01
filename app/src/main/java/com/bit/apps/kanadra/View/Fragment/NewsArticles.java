@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bit.apps.kanadra.Controler.Adapter.Home_Adapter.Championship_Adapter;
 import com.bit.apps.kanadra.Controler.Adapter.Home_Adapter.Diwan_Adapter;
@@ -43,12 +44,12 @@ public class NewsArticles extends Fragment {
     private Championship_Adapter championshipAdapter;
     private Projects_Adapter projectsAdapter;
     private Diwan_Adapter diwanAdapter;
-    private List<Item> news;
+    private List<Item> news, newsSearch;
     private List<Championships> champion;
     private List<DiwanItem> diwan;
     private List<ProjectsData> projects;
     private View view;
-    private String code;
+    private String code, searchText;
 
 
     public NewsArticles() {
@@ -78,11 +79,14 @@ public class NewsArticles extends Fragment {
         newsRecycler.setLayoutManager(newsManager);
 
         news = new ArrayList<>();
+        newsSearch = new ArrayList<>();
         champion = new ArrayList<>();
         projects = new ArrayList<>();
 
-        if (getArguments() != null)
+        if (getArguments() != null) {
             code = getArguments().getString("code");
+            searchText = getArguments().getString("searchText");
+        }
     }
     private void getData() {
         Retrofit.Builder builder = new Retrofit.Builder()
@@ -93,7 +97,7 @@ public class NewsArticles extends Fragment {
         ClientAPI api = retrofit.create(ClientAPI.class);
         Call<PojoNews> newsCall = null;
         Log.v("q1q", code);
-        if (code.equals("1"))
+        if (code.equals("1") || code.equals("8"))
             newsCall = api.getNews();
         else if(code.equals("2"))
             newsCall = api.getFamillyNews();
@@ -132,6 +136,15 @@ public class NewsArticles extends Fragment {
                     projectsAdapter = new Projects_Adapter(projects, getActivity());
                     newsRecycler.setAdapter(projectsAdapter);
                 }
+                else if(code.equals("8")) {
+                    news = response.body().getNews();
+                    filter();
+                    newsAdapter = new News_Adapter(newsSearch, getActivity());
+                    if(newsSearch.size()== 0)
+                        Toast.makeText(getActivity(), "لا يوجد نتيجة لهذا البحث", Toast.LENGTH_LONG).show();
+                    newsRecycler.setAdapter(newsAdapter);
+                }
+
                 else {
                     news = response.body().getNews();
                     newsAdapter = new News_Adapter(news, getActivity());
@@ -152,6 +165,15 @@ public class NewsArticles extends Fragment {
 
     }
 
+    private void filter() {
+        for(int i=0; i<news.size(); i++)
+        {
+            String title = news.get(i).getTitle();
+            if(title.contains(searchText))
+                newsSearch.add(news.get(i));
+        }
+
+    }
 
 
 }

@@ -1,7 +1,10 @@
 package com.bit.apps.kanadra.View.Fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
@@ -11,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.bit.apps.kanadra.Controler.Adapter.HomeAdapter;
 import com.bit.apps.kanadra.Controler.Adapter.Home_Adapter.Championship_Adapter;
@@ -19,6 +23,8 @@ import com.bit.apps.kanadra.Controler.Adapter.Home_Adapter.News_Adapter;
 import com.bit.apps.kanadra.Controler.Adapter.SlidingImage_Adapter;
 import com.bit.apps.kanadra.Interface.ClientAPI;
 import com.bit.apps.kanadra.R;
+import com.bit.apps.kanadra.View.Activity.Login_Signup;
+import com.bit.apps.kanadra.View.Activity.Splash_Screen;
 import com.bit.apps.kanadra.model.News_Model.Championships;
 import com.bit.apps.kanadra.model.Home_Model.Events;
 import com.bit.apps.kanadra.model.Home_Model.PojoHome;
@@ -37,6 +43,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Home extends Fragment {
 
     private View inflate_view;
@@ -45,6 +53,7 @@ public class Home extends Fragment {
     private Events_Adapter events_adapter;
     private List <News> news_Data;
     private List <Events> events_Data;
+    private FloatingActionButton add;
 
 
     private static ViewPager mPager;
@@ -52,6 +61,11 @@ public class Home extends Fragment {
     private static int NUM_PAGES = 0;
     private ArrayList<ImageModel> imageModelArrayList;
     private ArrayList<String> myImageList, sliderTitles;
+
+    private SharedPreferences preferences;
+    private String id;
+    private Intent intent;
+
 
 
     public Home() {
@@ -76,6 +90,24 @@ public class Home extends Fragment {
        // getData();
         getHomData();
 
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(id == null) {
+                    intent = new Intent(getActivity(), Login_Signup.class);
+                    intent.putExtra("champ_add", "1");
+                    startActivity(intent);
+                }
+                else {
+                    ADD ad = new ADD();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.content_fragment, ad)
+                            .addToBackStack(null)
+                            .commit();
+                }
+            }
+        });
+
         return inflate_view;
     }
 
@@ -87,6 +119,12 @@ public class Home extends Fragment {
         imageModelArrayList = new ArrayList<>();
         myImageList = new ArrayList<>();
         sliderTitles = new ArrayList<>();
+        add = (FloatingActionButton) inflate_view.findViewById(R.id.add);
+
+        preferences = getActivity().getSharedPreferences(getString(R.string.login_pref), MODE_PRIVATE);
+
+        id =preferences.getString("id", null);
+
 
 
     }

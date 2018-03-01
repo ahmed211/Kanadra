@@ -7,12 +7,12 @@
     <item android:id="@+id/familyNews_menu" android:title="@string/familyNews_menu" android:icon="@drawable/victory"/>
     <item android:id="@+id/articles_menu" android:title="@string/articles_menu" android:icon="@drawable/article"/>
     <item android:id="@+id/events_menu" android:icon="@drawable/calendar" android:title="@string/events_menu" />
+    <item android:id="@+id/projects_menu" android:title="@string/projects" android:icon="@drawable/prooject"/>
+    <item android:id="@+id/shoot_menu" android:title="@string/shoot_menu" android:icon="@drawable/cup"/>
     <item android:id="@+id/familyDiwan_menu" android:title="@string/familyDiwan_menu" android:icon="@drawable/world"/>
     <item android:id="@+id/mbra_menu" android:title="@string/mbra_menu" android:icon="@drawable/users"/>
     <item android:id="@+id/kanadraDiwan_menu" android:title="@string/kanadraDiwan_menu" android:icon="@drawable/placeholder"/>
-    <item android:id="@+id/shoot_menu" android:title="@string/shoot_menu" android:icon="@drawable/cup"/>
     <item android:id="@+id/gallary_menu" android:title="@string/gallary_menu" android:icon="@drawable/gallary"/>
     <item android:id="@+id/aboutus_menu" android:title="@string/aboutus_menu" android:icon="@drawable/us"/>
-    <item android:id="@+id/projects_menu" android:title="@string/projects" android:icon="@drawable/prooject"/>
 
 </menu>
