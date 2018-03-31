@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "72427472177",
+    "firebase_url": "https://alknadra-194509.firebaseio.com",
+    "project_id": "alknadra-194509",
+    "storage_bucket": "alknadra-194509.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72427472177:android:afbef2f922eb2fe4",
+        "android_client_info": {
+          "package_name": "com.bit.apps.kanadra"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "72427472177-kgub3q4p54scejrn3ouf66adgbog9465.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXDmTSY-91ZL8B0d10oRNJV-ghHf6Pe3A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,7 +1,11 @@
 package com.bit.apps.kanadra.View.Activity;
 
+<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
+=======
+import android.content.SharedPreferences;
+>>>>>>> 8e9e8d3658768be6166d108a7d9d82a53c1f6bdd
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -39,6 +43,8 @@ import com.bit.apps.kanadra.View.Fragment.Mbra;
 import com.bit.apps.kanadra.View.Fragment.NewsArticles;
 import com.bit.apps.kanadra.View.Fragment.Shoot;
 import com.bit.apps.kanadra.View.Fragment.VideoGallery;
+import com.bit.apps.kanadra.util.FirebaseConfig;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import android.app.ActionBar;
 //import android.widget.RelativeLayout.LayoutParams;
@@ -58,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private Bundle bundle, loginBundle;
     private EditText searchView;
 
-
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle toggle;
@@ -76,12 +82,17 @@ public class MainActivity extends AppCompatActivity {
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         initialization();
+<<<<<<< HEAD
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.main);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             layout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         }
 
+=======
+        displayFirebaseRegId();
+        FirebaseMessaging.getInstance().subscribeToTopic(FirebaseConfig.TOPIC_NEWS);
+>>>>>>> 8e9e8d3658768be6166d108a7d9d82a53c1f6bdd
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
@@ -190,6 +201,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void displayFirebaseRegId() {
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(FirebaseConfig.SHARED_PREF, 0);
+        String regId = pref.getString("regId", null);
+        Log.e(TAG, "Firebase reg id: " + regId);
+    }
 
     public void selectedItemDrawer(MenuItem item){
 
