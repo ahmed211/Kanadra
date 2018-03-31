@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.bit.apps.kanadra.Interface.ClientAPI;
 import com.bit.apps.kanadra.R;
+import com.bit.apps.kanadra.model.ArrayListPhoto;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,6 +39,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -167,11 +169,18 @@ public class AddProject extends AppCompatActivity implements OnMapReadyCallback 
 
     private void callapi(String title, String content, String mobile, String userId,
                          String user_auth,  ArrayList <String> img,String phone,String website,String facbook,String instagram,String twitter) {
-        MultipartBody.Part[] imagesParts = new MultipartBody.Part[img.size()];
+       // MultipartBody.Part[] imagesParts = new MultipartBody.Part[img.size()];
         String [] imgarr = new String[img.size()];
         for (int i=0; i<img.size(); i++)
 //            imagesParts[i] = MultipartBody.Part.createFormData("image", img.get(i));
             imgarr[i] = img.get(i);
+
+
+
+
+        ArrayListPhoto arrayListAge = new ArrayListPhoto(img);
+
+
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(getString(R.string.baseUrl))
                 .addConverterFactory(GsonConverterFactory.create());
@@ -182,7 +191,7 @@ public class AddProject extends AppCompatActivity implements OnMapReadyCallback 
 
         ClientAPI api = retrofit.create(ClientAPI.class);
         Call<ResponseBody> call = api.uploadProject(mobile, userId, user_auth,
-                title, content, phone, website, facbook, twitter, instagram , imgarr);
+                title, content, phone, website, facbook, twitter, instagram , arrayListAge);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

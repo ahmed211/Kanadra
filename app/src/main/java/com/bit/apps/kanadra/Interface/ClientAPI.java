@@ -1,6 +1,7 @@
 package com.bit.apps.kanadra.Interface;
 
 import com.bit.apps.kanadra.model.AboutUs;
+import com.bit.apps.kanadra.model.ArrayListPhoto;
 import com.bit.apps.kanadra.model.Gallery_Model.PojoGallery;
 import com.bit.apps.kanadra.model.Home_Model.PojoHome;
 import com.bit.apps.kanadra.model.News_Categories_Model.PojoCat;
@@ -15,6 +16,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -102,7 +104,7 @@ public interface ClientAPI {
             @Field("facebook") String facebook,
             @Field("twitter") String twitter,
             @Field("instagram") String instagram,
-            @Field("images") String[] images );
+            @Body ArrayListPhoto images);
 
 
     @GET("index.php?r=api/get/categories")
